@@ -1,0 +1,44 @@
+body {
+    margin: 25px;
+}
+
+$size: 3vh;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+// alternate permettent de changer l'ordre de lecture de l'animation à chaque passage
+.load {
+    width: $size*10;
+    height: $size*7.5;
+    display: flex;
+    justify-content: space-evenly;
+    &__bar {
+        background-color: #15DEA5;
+        height: 100%;
+        width: $size;
+        animation: bars 1000ms both ease-in-out infinite alternate;
+        @for $i from 1 through 5 {
+            &--#{$i} {
+                animation-delay: 1500ms / 5 *$i;
+            }
+            &--#{$i}-inv {
+                animation-delay: 1500ms / 5 *$i;
+                animation-direction: alternate-reverse;
+                background-color: #0E397F;
+            }
+        }
+        
+    }
+}
+
+@keyframes bars {
+    0% {
+        transform: scaleY(0.5);
+    }
+    100% {
+        transform: scaleY(1.0);
+    }
+}
